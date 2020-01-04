@@ -2,8 +2,8 @@
 import pygame, sys, time, random, asyncio
 
 side = 30  # 单块边长
-windowX = 20  # 窗口宽30格子
-windowY = 30  # 窗口高20格子
+windowX = 10  # 窗口宽30格子
+windowY = 20  # 窗口高20格子
 blockX = int(windowX / 2)  # x第3格(3*30) 方块X位置
 blockY = -2  # y第6格(6*30) 方块Y位置
 currentBlock = [[0, 0], [0, -1], [0, 1], [0, 2]]  # 当前方块，默认I
@@ -82,7 +82,6 @@ def getTo(current_block, block_x, block_y):
     global Map
     for block in current_block:
         Map[block[1] + block_y][block[0] + block_x] = True
-
     # 判断消除
     allY = []
     for block in current_block:
@@ -130,6 +129,7 @@ while True:
         elif event.type == pygame.KEYUP:  # 松开键
             keyChange(event.key, False)
 
+    # 上下左右判断并且做出动作
     if keyDown['left'] and judgeMove(blockX - 1, blockY, currentBlock):
         time.sleep(0.05)
         blockX -= 1
